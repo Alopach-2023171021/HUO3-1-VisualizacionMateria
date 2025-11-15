@@ -33,4 +33,19 @@ public class MateriaController {
             return ResponseEntity.badRequest().body("No se pudo habilitar la materia");
         }
     }
+
+    //funcion de editar- pedrito bb
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<?> editarMateria(@PathVariable int id, @RequestBody MateriaDTO materiaDTO) {
+
+        MateriaDTO materiaEditada = materiaService.editarMateria(id, materiaDTO);
+
+        if (materiaEditada == null) {
+            return ResponseEntity.badRequest().body("No se pudo actualizar la materia");
+        }
+
+        return ResponseEntity.ok(materiaEditada);
+    }
+
+}
 }
